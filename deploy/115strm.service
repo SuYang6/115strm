@@ -1,0 +1,26 @@
+[Unit]
+Description=115strm - 115 STRM302 service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=115strm
+Group=115strm
+WorkingDirectory=/opt/115strm
+ExecStart=/opt/115strm/bin/115strm --config /etc/115strm/config.yaml
+Restart=on-failure
+RestartSec=5
+LimitNOFILE=65536
+MemoryMax=512M
+CPUQuota=80%
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+ReadWritePaths=/var/lib/115strm /var/log/115strm /opt/Media
+Environment=GIN_MODE=release
+Environment=TZ=Asia/Shanghai
+
+[Install]
+WantedBy=multi-user.target

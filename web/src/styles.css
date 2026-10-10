@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap');
+
+:root {
+  --bg: #f7f4ec;
+  --panel: #ffffff;
+  --panel-soft: #fbfaf7;
+  --ink: #20302b;
+  --muted: #65746f;
+  --line: #ddd8cc;
+  --primary: #2f7d68;
+  --primary-weak: #e4f1ec;
+  --accent: #c47d38;
+  --danger: #b94a48;
+  font-family: 'Fira Sans', 'Segoe UI', sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 360px; background: var(--bg); }
+button, input, textarea { font-family: inherit; }
+
+.shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 248px minmax(0, 1fr);
+}
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  padding: 22px 16px;
+  border-right: 1px solid var(--line);
+  background: #fffdf8;
+}
+
+.brand {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 8px 8px 22px;
+}
+
+.brand-mark {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #20483d;
+  border-radius: 8px;
+  background: #dceee7;
+  font-weight: 700;
+}
+
+.brand strong { display: block; font-size: 18px; }
+.brand span { color: var(--muted); font-size: 12px; }
+
+nav { display: grid; gap: 6px; }
+.nav-item {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  min-height: 42px;
+  padding: 0 12px;
+  border-radius: 8px;
+  color: var(--muted);
+  text-decoration: none;
+  transition: background .2s, color .2s;
+}
+.nav-item:hover, .nav-item.router-link-active {
+  color: var(--primary);
+  background: var(--primary-weak);
+}
+
+.workspace {
+  padding: 22px 28px 36px;
+  min-width: 0;
+}
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.topbar h1 { margin: 3px 0 0; font-size: 26px; letter-spacing: 0; }
+.eyebrow { margin: 0; color: var(--muted); font-size: 12px; }
+.top-actions { display: flex; align-items: center; gap: 10px; }
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 18px;
+  box-shadow: 0 12px 28px rgba(47, 64, 55, .06);
+}
+.panel + .panel { margin-top: 16px; }
+.grid { display: grid; gap: 16px; }
+.grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.metric { min-height: 112px; }
+.metric span { color: var(--muted); font-size: 13px; }
+.metric strong { display: block; margin-top: 12px; font-size: 30px; }
+.muted { color: var(--muted); }
+.code { font-family: 'Fira Code', monospace; }
+.toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 14px; }
+.page-title { margin: 0 0 14px; font-size: 18px; }
+.form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.full { grid-column: 1 / -1; }
+.password-hint { margin-top: 12px; }
+.job-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.job-head .page-title { margin-bottom: 4px; }
+.job-head p { margin: 0; }
+.progress-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 14px; }
+.progress-grid > div { min-height: 74px; padding: 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel-soft); }
+.progress-grid span { display: block; color: var(--muted); font-size: 12px; }
+.progress-grid strong { display: block; margin-top: 8px; font-size: 20px; }
+.plan-grid strong { font-size: 17px; }
+.current-path { margin: 12px 0 0; padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel-soft); overflow-wrap: anywhere; }
+
+@media (max-width: 900px) {
+  .shell { grid-template-columns: 1fr; }
+  .sidebar { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--line); }
+  nav { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .workspace { padding: 18px; }
+  .grid-4, .grid-2, .form-grid, .progress-grid { grid-template-columns: 1fr; }
+  .topbar { align-items: flex-start; flex-direction: column; }
+}

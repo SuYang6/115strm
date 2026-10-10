@@ -1,0 +1,22 @@
+# Use this file once when switching the current server to published images.
+services:
+  115strm:
+    image: ghcr.io/suyang6/115strm:latest
+    container_name: 115strm
+    user: "998:999"
+    restart: unless-stopped
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      TZ: Asia/Shanghai
+    ports:
+      - "8585:8585"
+      - "8097:8097"
+      - "127.0.0.1:8590:8590"
+    volumes:
+      - /opt/panstr-src/deploy/config.yaml:/etc/115strm/config.yaml
+      - /etc/localtime:/etc/localtime:ro
+      - /var/lib/panstr:/var/lib/panstr
+      - /var/log/panstr:/var/log/panstr
+      - /opt/Media:/opt/Media
+      - /opt/115open:/opt/115open:ro

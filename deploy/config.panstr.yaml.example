@@ -1,0 +1,78 @@
+server:
+  host: 0.0.0.0
+  port: 8585
+  base_url: ""
+  log_level: info
+
+emby:
+  base_url: "http://host.docker.internal:8096"
+  api_key: ""
+  proxy_host: 0.0.0.0
+  proxy_port: 8097
+  notify_refresh: true
+  notify_cooldown_minutes: 10
+  library_task_id: ""
+  mediainfo_task_id: ""
+  path_rewrites: []
+
+pan115:
+  auth_mode: cookie
+  qrcode_app: android
+  access_token: ""
+  refresh_token: ""
+
+strm302:
+  batch_dir: "/opt/Media"
+  video_extensions: "mkv,mp4,avi,ts,m2ts,mov,wmv,flv,webm,iso,rmvb"
+  root_cid: "2950294963365084864"
+  scan_source: "115"
+  scan_mode: "full"
+  scan_qps: 0.3
+  detail_threads: 3
+  scan_ua: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+  cd2_mount_dir: "/opt/115open/电视电影"
+  openlist_base_url: "http://host.docker.internal:5244"
+  openlist_token: ""
+  openlist_username: ""
+  openlist_password: ""
+  openlist_root_path: "/电视电影"
+  openlist_page_size: 200
+  openlist_refresh: false
+  api_request_retry_count: 4
+  api_request_retry_delays: ["10s", "30s", "60s", "120s"]
+  redirect_cache_ttl: 600
+  redirect_url_ttl: 3600
+  redirect_fetch_retry_count: 2
+  redirect_fetch_retry_delays: ["1s", "3s"]
+  download_companion: true
+  companion_max_size: 52428800
+  companion_extensions:
+    nfo: [".nfo"]
+    image: [".jpg", ".jpeg", ".png", ".webp"]
+    subtitle: [".srt", ".ass", ".ssa", ".vtt", ".sub"]
+  companion_keywords:
+    poster: ["-poster", "-cover"]
+    fanart: ["-fanart", "-backdrop"]
+    thumb: ["-thumb"]
+
+tasks:
+  default_timeout: 3600
+  default_retry: 0
+  recycle_keep_days: 3
+  patrol_max_items: 10000
+  incremental_max_items: 10000
+  local_trigger_enabled: true
+  local_trigger_host: 0.0.0.0
+  local_trigger_port: 8590
+
+storage:
+  data_dir: "/var/lib/panstr"
+  db_file: "/var/lib/panstr/115strm.db"
+  cookie_file: "/var/lib/panstr/115.cookie"
+  log_file: "/var/log/panstr/115strm.log"
+  audit_keep_days: 14
+
+security:
+  cors_allowed_origins: []
+  login_lock_minutes: 15
+  outbound_timeout_seconds: 60

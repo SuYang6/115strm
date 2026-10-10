@@ -1,0 +1,27 @@
+# 兼容已部署的 panstr：继续使用原容器、配置和数据挂载。
+services:
+  panstr:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    image: panstr:local
+    container_name: panstr
+    user: "998:999"
+    restart: unless-stopped
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      TZ: Asia/Shanghai
+    ports:
+      - "8585:8585"
+      - "8097:8097"
+      - "127.0.0.1:8590:8590"
+    entrypoint: ["/opt/115strm/115strm"]
+    command: ["--config", "/etc/panstr/config.yaml"]
+    volumes:
+      - ./config.yaml:/etc/panstr/config.yaml
+      - /etc/localtime:/etc/localtime:ro
+      - /var/lib/panstr:/var/lib/panstr
+      - /var/log/panstr:/var/log/panstr
+      - /opt/Media:/opt/Media
+      - /opt/115open:/opt/115open:ro
